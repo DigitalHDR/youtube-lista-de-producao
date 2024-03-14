@@ -1,6 +1,11 @@
 const listaDeVideos = document.querySelectorAll('.listaDeVideos .lista')
 const classDoVideoPrincipal = document.querySelector('.classDoVideoPrincipal')
 const classDoTituloPrincipal = document.querySelector('.classDoTituloPrincipal')
+const slider = document.querySelector('.listaDeVideos')
+
+let isDragging = false
+let startY = 0
+let startScrollTop = 0
 
 listaDeVideos.forEach((video) => {
   video.onclick = () => {
@@ -8,10 +13,8 @@ listaDeVideos.forEach((video) => {
       vid.classList.remove('ativo')
     })
 
-
     video.classList.add('ativo')
 
-    
     if (video.classList.contains('ativo')) {
       const src = video.children[0].src
       classDoVideoPrincipal.src = src
@@ -21,15 +24,11 @@ listaDeVideos.forEach((video) => {
   }
 })
 
-const slider = document.querySelector('.listaDeVideos')
-let isDragging = false
-let startY = 0
-let startScrollTop = 0
-
 slider.addEventListener('mousedown', (e) => {
   isDragging = true
   startY = e.pageY
   startScrollTop = slider.scrollTop
+  listaDeVideos.classList.remove('ativo')
 })
 
 slider.addEventListener('mousemove', (e) => {
@@ -46,5 +45,3 @@ slider.addEventListener('mouseup', (e) => {
   }
   isDragging = false
 })
-
-// video.classList.remove('ativo')
